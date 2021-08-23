@@ -1,4 +1,4 @@
-package kr.co.jsongroup.composetest.ui.theme
+package com.anypeace.mvi.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package kr.co.jsongroup.composetest
+package com.anypeace.mvi
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
