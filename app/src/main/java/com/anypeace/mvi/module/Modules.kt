@@ -1,11 +1,15 @@
 package com.anypeace.mvi.module
 
+import android.content.Context
+import androidx.room.Room
+import com.anypeace.mvi.AppDB
 import com.anypeace.mvi.api.CommonAPIService
 import com.anypeace.mvi.api.GithubAPIService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,6 +30,19 @@ object Repository {
         logger.level = HttpLoggingInterceptor.Level.BASIC
         return logger
     }
+
+    @Provides
+    @Singleton
+    fun database(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, AppDB::class.java, "mvi.db")
+            .fallbackToDestructiveMigration()
+            .build()
+
+
+    @Provides
+    @Singleton
+    fun repoDao(db: AppDB) =
+        db.repoDao()
 
 }
 
